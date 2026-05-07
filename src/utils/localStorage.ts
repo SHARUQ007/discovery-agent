@@ -2,12 +2,13 @@ import type { DiscoveryStorage, Runner } from '../types';
 import { defaultQuestionnaire } from './sampleData';
 
 const STORAGE_KEY = 'signal-discovery-agent';
+const supportedOllamaModels = ['qwen2.5:3b', 'llama3.1:8b'];
 
 export const defaultStorage: DiscoveryStorage = {
   transcripts: [],
   questionnaire: defaultQuestionnaire,
   selectedRunner: 'Ollama Local',
-  ollamaModel: 'llama3.1:8b',
+  ollamaModel: 'qwen2.5:3b',
   lastGeneratedPrompt: '',
   lastResult: '',
 };
@@ -27,7 +28,7 @@ export function loadStorage(): DiscoveryStorage {
       transcripts: parsed.transcripts ?? [],
       questionnaire: parsed.questionnaire ?? defaultQuestionnaire,
       selectedRunner,
-      ollamaModel: parsed.ollamaModel ?? 'llama3.1:8b',
+      ollamaModel: supportedOllamaModels.includes(parsed.ollamaModel ?? '') ? parsed.ollamaModel ?? 'qwen2.5:3b' : 'qwen2.5:3b',
       lastGeneratedPrompt: parsed.lastGeneratedPrompt ?? '',
       lastResult: parsed.lastResult ?? '',
     };

@@ -1,6 +1,17 @@
 import { Loader2, Play, Server } from 'lucide-react';
 import type { Runner } from '../types';
 
+const ollamaModels = [
+  {
+    value: 'qwen2.5:3b',
+    label: 'Qwen 2.5 3B - faster demo',
+  },
+  {
+    value: 'llama3.1:8b',
+    label: 'Llama 3.1 8B - higher quality',
+  },
+];
+
 interface RunnerSelectorProps {
   selectedRunner: Runner;
   onRunnerChange: (runner: Runner) => void;
@@ -59,12 +70,17 @@ export function RunnerSelector({
         {isOllamaRunner && (
           <label className="block">
             <span className="text-sm font-medium text-ink">Ollama model</span>
-          <input
-            value={ollamaModel}
-            onChange={(event) => onOllamaModelChange(event.target.value)}
-            className="mt-2 w-full rounded-lg border border-line bg-white p-3 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
-            placeholder="llama3.1:8b"
-          />
+            <select
+              value={ollamaModels.some((model) => model.value === ollamaModel) ? ollamaModel : 'qwen2.5:3b'}
+              onChange={(event) => onOllamaModelChange(event.target.value)}
+              className="mt-2 w-full rounded-lg border border-line bg-white p-3 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            >
+              {ollamaModels.map((model) => (
+                <option key={model.value} value={model.value}>
+                  {model.label}
+                </option>
+              ))}
+            </select>
           </label>
         )}
 
@@ -75,7 +91,7 @@ export function RunnerSelector({
           </div>
           <p className="mt-1">
             {isOllamaRunner
-              ? 'Keep Ollama and npm run dev:server running before starting the agent.'
+              ? `Keep Ollama and npm run dev:server running. Install the selected model first with: ollama pull ${ollamaModel || 'qwen2.5:3b'}`
               : 'Use this when you want a fast demo without loading a local model.'}
           </p>
         </div>
