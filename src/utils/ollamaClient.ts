@@ -19,5 +19,11 @@ export async function runOllamaPrompt(model: string, prompt: string): Promise<st
     throw new Error(data.error ?? 'Ollama generation failed.');
   }
 
-  return data.result ?? '';
+  const result = data.result ?? '';
+
+  if (!result.trim()) {
+    throw new Error('Ollama returned an empty response. Try Demo Background Runner or test the model directly in Command Prompt.');
+  }
+
+  return result;
 }

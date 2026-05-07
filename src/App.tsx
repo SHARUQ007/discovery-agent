@@ -139,6 +139,10 @@ export default function App() {
 
       try {
         const result = await runOllamaPrompt(storage.ollamaModel.trim(), prompt);
+        if (!result.trim()) {
+          setStatus('Ollama returned an empty response. No result was saved.');
+          return;
+        }
         updateStorage({
           lastGeneratedPrompt: prompt,
           lastResult: result,

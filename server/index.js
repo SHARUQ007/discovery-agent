@@ -81,8 +81,19 @@ app.post('/api/ollama/generate', async (request, response) => {
     }
 
     const data = await ollamaResponse.json();
+    const result = data.response ?? '';
+
+    if (!result.trim()) {
+      response.status(502).json({
+        error:
+          'Ollama returned an empty response. Try a smaller model, reduce the number of transcripts, or test the model directly with `ollama run <model> "Reply with READY"`.',
+        model,
+      });
+      return;
+    }
+
     response.json({
-      result: data.response ?? '',
+      result,
       model,
       done: data.done ?? true,
     });
