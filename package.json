@@ -7,7 +7,9 @@
     "dev": "vite",
     "dev:server": "node server/index.js",
     "worker": "node server/worker.js",
+    "ollama:serve": "node server/ollamaRunner.js",
     "dev:all": "concurrently \"npm run dev:server\" \"npm run dev\"",
+    "dev:ai": "concurrently --kill-others \"npm run ollama:serve\" \"npm run worker\" \"npm run dev:all\"",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "start": "node server/index.js"
