@@ -210,6 +210,11 @@ export default function App() {
     }
   };
 
+  const handleClearResult = () => {
+    updateStorage({ lastResult: '' });
+    setStatus('AI result cleared');
+  };
+
   const viewedTranscript = storage.transcripts.find((transcript) => transcript.id === viewTranscriptId) ?? null;
   const elapsedSeconds = runStartedAt ? Math.max(0, Math.floor((Date.now() - runStartedAt) / 1000) + runTick * 0) : 0;
   const estimatedTotalSeconds =
@@ -327,6 +332,7 @@ export default function App() {
             value={storage.lastResult}
             onChange={(lastResult) => updateStorage({ lastResult })}
             onSave={handleSaveResult}
+            onClear={handleClearResult}
           />
         </WorkflowSection>
       </div>

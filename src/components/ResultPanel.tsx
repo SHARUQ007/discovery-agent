@@ -1,4 +1,4 @@
-import { BarChart3, Flame, Save, Table2 } from 'lucide-react';
+import { BarChart3, Flame, Save, Table2, Trash2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
@@ -6,6 +6,7 @@ interface ResultPanelProps {
   value: string;
   onChange: (value: string) => void;
   onSave: () => void;
+  onClear: () => void;
 }
 
 interface TableBlock {
@@ -291,7 +292,7 @@ function renderReport(value: string) {
   return output;
 }
 
-export function ResultPanel({ value, onChange, onSave }: ResultPanelProps) {
+export function ResultPanel({ value, onChange, onSave, onClear }: ResultPanelProps) {
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
@@ -310,10 +311,16 @@ export function ResultPanel({ value, onChange, onSave }: ResultPanelProps) {
             Formatted as a report with structured tables, visual heatmaps, roadmap cards, and editable markdown.
           </p>
         </div>
-        <button type="button" onClick={handleSave} className="btn-primary">
-          <Save className="h-4 w-4" />
-          {saved ? 'Saved' : 'Save Result'}
-        </button>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={onClear} disabled={!value.trim()} className="btn-secondary disabled:cursor-not-allowed disabled:opacity-60">
+            <Trash2 className="h-4 w-4" />
+            Clear Result
+          </button>
+          <button type="button" onClick={handleSave} className="btn-primary">
+            <Save className="h-4 w-4" />
+            {saved ? 'Saved' : 'Save Result'}
+          </button>
+        </div>
       </div>
 
       <div className="mt-5 rounded-lg border border-line bg-canvas p-4">
