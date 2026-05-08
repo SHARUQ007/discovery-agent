@@ -20,7 +20,9 @@ export function loadStorage(): DiscoveryStorage {
     const parsed = JSON.parse(raw) as Partial<DiscoveryStorage>;
 
     const selectedRunner: Runner =
-      parsed.selectedRunner === 'Demo Background Runner' || parsed.selectedRunner === 'Ollama Local'
+      parsed.selectedRunner === 'Demo Background Runner' ||
+      parsed.selectedRunner === 'Ollama Local' ||
+      parsed.selectedRunner === 'Remote AI (Google Sheets)'
         ? parsed.selectedRunner
         : 'Ollama Local';
 

@@ -40,6 +40,8 @@ export function RunnerSelector({
 }: RunnerSelectorProps) {
   const isDemoRunner = selectedRunner === 'Demo Background Runner';
   const isOllamaRunner = selectedRunner === 'Ollama Local';
+  const isRemoteAiRunner = selectedRunner === 'Remote AI (Google Sheets)';
+  const usesOllamaModel = isOllamaRunner || isRemoteAiRunner;
 
   return (
     <section className="rounded-lg border border-line bg-panel p-5 shadow-soft">
@@ -63,11 +65,12 @@ export function RunnerSelector({
             className="mt-2 w-full rounded-lg border border-line bg-white p-3 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           >
             <option>Ollama Local</option>
+            <option>Remote AI (Google Sheets)</option>
             <option>Demo Background Runner</option>
           </select>
         </label>
 
-        {isOllamaRunner && (
+        {usesOllamaModel && (
           <label className="block">
             <span className="text-sm font-medium text-ink">Ollama model</span>
             <select
@@ -87,10 +90,16 @@ export function RunnerSelector({
         <div className="rounded-lg border border-line bg-canvas p-3 text-sm leading-6 text-muted">
           <div className="flex items-center gap-2 font-medium text-ink">
             <Server className="h-4 w-4 text-accent" />
-            {isOllamaRunner ? 'Local bridge: localhost:8787 -> Ollama localhost:11434' : 'Runs deterministic local demo logic in the browser'}
+            {isRemoteAiRunner
+              ? 'Remote AI: frontend -> local bridge -> Ollama on Mac -> Google Sheets -> frontend'
+              : isOllamaRunner
+                ? 'Local bridge: localhost:8787 -> Ollama localhost:11434'
+                : 'Runs deterministic local demo logic in the browser'}
           </div>
           <p className="mt-1">
-            {isOllamaRunner
+            {isRemoteAiRunner
+              ? `Requires .env Google Sheets credentials in the local bridge. Install the selected model first with: ollama pull ${ollamaModel || 'qwen2.5:3b'}`
+              : isOllamaRunner
               ? `Keep Ollama and npm run dev:server running. Install the selected model first with: ollama pull ${ollamaModel || 'qwen2.5:3b'}`
               : 'Use this when you want a fast demo without loading a local model.'}
           </p>
@@ -103,7 +112,7 @@ export function RunnerSelector({
           className="btn-primary w-full justify-center disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isRunning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
-          {isRunning ? 'Running agent...' : isDemoRunner ? 'Run Demo Agent' : 'Run Ollama Agent'}
+          {isRunning ? 'Running agent...' : isDemoRunner ? 'Run Demo Agent' : isRemoteAiRunner ? 'Run Remote AI' : 'Run Ollama Agent'}
         </button>
 
         {progress && (
