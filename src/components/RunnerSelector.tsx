@@ -91,14 +91,14 @@ export function RunnerSelector({
           <div className="flex items-center gap-2 font-medium text-ink">
             <Server className="h-4 w-4 text-accent" />
             {isRemoteAiRunner
-              ? 'Remote AI: frontend -> local bridge -> Ollama on Mac -> Google Sheets -> frontend'
+              ? 'Remote AI: frontend -> Google Sheets queue -> Mac worker -> Ollama -> Google Sheets -> frontend'
               : isOllamaRunner
                 ? 'Local bridge: localhost:8787 -> Ollama localhost:11434'
                 : 'Runs deterministic local demo logic in the browser'}
           </div>
           <p className="mt-1">
             {isRemoteAiRunner
-              ? `Requires .env Google Sheets credentials in the local bridge. Install the selected model first with: ollama pull ${ollamaModel || 'qwen2.5:3b'}`
+              ? `Requires Google Sheets env vars in Vercel and on your Mac worker. Start the Mac worker with npm run worker. Install the selected model first with: ollama pull ${ollamaModel || 'qwen2.5:3b'}`
               : isOllamaRunner
               ? `Keep Ollama and npm run dev:server running. Install the selected model first with: ollama pull ${ollamaModel || 'qwen2.5:3b'}`
               : 'Use this when you want a fast demo without loading a local model.'}
