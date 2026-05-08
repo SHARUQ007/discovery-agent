@@ -40,7 +40,7 @@ export function runDemoDiscoveryAgent(transcripts: Transcript[], questionnaire: 
   const opportunities = findMatches(allContent, tagKeywords.opportunity);
   const capabilities = findMatches(allContent, tagKeywords.capability);
 
-  return `# Signal Discovery Agent Demo Output
+  return `# Structured Discovery Agent Demo Output
 
 ## Executive Summary
 Across ${transcripts.length} SME interview${transcripts.length === 1 ? '' : 's'}, the strongest signals point to fragmented workflows, manual reconciliation, inconsistent handoffs, and delayed visibility into operational risk. The opportunity is to convert dispersed interview findings into a capability-led transformation agenda focused on workflow clarity, data integration, proactive exception management, and measurable value realization.
@@ -78,7 +78,7 @@ ${topicRows(transcripts)}
 - Process ownership and handoff clarity are recurring operating model gaps.
 - The highest-value opportunity is a shared signal layer that detects risk, prioritizes exceptions, and routes action.
 
-## Layer 4: Signal Discovery Agent Deliverables
+## Layer 4: Structured Discovery Agent Deliverables
 | Opportunity | Capability Required | Value Pool | Priority |
 | --- | --- | --- | --- |
 | Proactive exception detection | Integrated workflow analytics | Productivity and risk reduction | High |

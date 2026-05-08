@@ -1,7 +1,7 @@
 import type { DiscoveryStorage, Runner } from '../types';
 import { defaultQuestionnaire } from './sampleData';
 
-const STORAGE_KEY = 'signal-discovery-agent';
+const STORAGE_KEY = 'structured-discovery-agent';
 const supportedOllamaModels = ['qwen2.5:3b', 'llama3.1:8b'];
 
 export const defaultStorage: DiscoveryStorage = {

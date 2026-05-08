@@ -238,7 +238,7 @@ export default function App() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-accent">Local Ollama + browser storage</p>
-              <h1 className="mt-2 text-3xl font-semibold tracking-normal text-ink sm:text-4xl">Signal Discovery Agent</h1>
+              <h1 className="mt-2 text-3xl font-semibold tracking-normal text-ink sm:text-4xl">Structured Discovery Agent</h1>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
                 Upload SME transcripts, run the 4-layer discovery agent in-app, and produce consulting-ready deliverables without external AI redirects.
               </p>

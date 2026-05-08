@@ -79,7 +79,7 @@ export function ProcessingPreview({ transcripts, selectedTranscript, questionnai
           )}
         </PreviewBlock>
 
-        <PreviewBlock title="Signal Discovery Agent Prompt Preview">
+        <PreviewBlock title="Structured Discovery Agent Prompt Preview">
           {previewPrompt ? (
             <pre className="max-h-64 overflow-auto whitespace-pre-wrap rounded-md bg-canvas p-3 text-xs leading-5 text-ink">
               {previewPrompt.slice(0, 1800)}{previewPrompt.length > 1800 ? '\n...' : ''}

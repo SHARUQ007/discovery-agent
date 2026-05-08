@@ -16,7 +16,7 @@ const layers = [
   },
   {
     number: 4,
-    title: 'Signal Discovery Agent',
+    title: 'Structured Discovery Agent',
     purpose: 'Creates executive synthesis, opportunity maps, heatmaps, and 30/60/90 plans.',
   },
 ];

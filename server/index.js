@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const app = express();
 const port = Number(process.env.PORT ?? 8787);
 const ollamaBaseUrl = process.env.OLLAMA_BASE_URL ?? 'http://localhost:11434';
-const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME ?? 'SignalDiscoveryRuns';
+const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME ?? 'StructuredDiscoveryRuns';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distPath = path.resolve(__dirname, '../dist');
 const sheetHeaders = ['runId', 'createdAt', 'model', 'status', 'promptPreview', 'result'];
@@ -183,7 +183,7 @@ app.get('*', (_request, response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Signal Discovery Agent server running on http://localhost:${port}`);
+  console.log(`Structured Discovery Agent server running on http://localhost:${port}`);
   console.log(`Proxying Ollama requests to ${ollamaBaseUrl}`);
 });
 

@@ -13,7 +13,7 @@ ${transcript.cleanedContent || transcript.content}`,
     )
     .join('\n\n---\n\n');
 
-  return `You are a senior strategy consultant operating as a Signal Discovery Agent.
+  return `You are a senior strategy consultant operating as a Structured Discovery Agent.
 
 Your job is to process SME interviews through the following 4-layer architecture:
 
@@ -59,7 +59,7 @@ Output:
 - Strategic themes
 - Industry comparison table
 
-Layer 4: Signal Discovery Agent
+Layer 4: Structured Discovery Agent
 Convert findings into consulting deliverables:
 - Executive summary
 - Opportunity-to-capability map
