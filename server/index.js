@@ -219,11 +219,11 @@ async function generateOllamaResult(model, prompt) {
 
 async function getSheetsClient() {
   const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
-  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL;
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
   if (!spreadsheetId || !clientEmail || !privateKey) {
-    throw new Error('Missing Google Sheets env vars. Fill GOOGLE_SHEETS_SPREADSHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, and GOOGLE_PRIVATE_KEY.');
+    throw new Error('Missing Google Sheets env vars. Fill GOOGLE_SHEETS_SPREADSHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL or GOOGLE_CLIENT_EMAIL, and GOOGLE_PRIVATE_KEY.');
   }
 
   const auth = new google.auth.JWT({
