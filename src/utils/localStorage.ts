@@ -22,7 +22,7 @@ export function loadStorage(): DiscoveryStorage {
     const selectedRunner: Runner =
       parsed.selectedRunner === 'Demo Background Runner' ||
       parsed.selectedRunner === 'Ollama Local' ||
-      parsed.selectedRunner === 'Remote AI (Google Sheets)'
+      parsed.selectedRunner === 'Remote AI'
         ? parsed.selectedRunner
         : 'Ollama Local';
 

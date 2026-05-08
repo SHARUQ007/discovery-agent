@@ -40,7 +40,7 @@ export function RunnerSelector({
 }: RunnerSelectorProps) {
   const isDemoRunner = selectedRunner === 'Demo Background Runner';
   const isOllamaRunner = selectedRunner === 'Ollama Local';
-  const isRemoteAiRunner = selectedRunner === 'Remote AI (Google Sheets)';
+  const isRemoteAiRunner = selectedRunner === 'Remote AI';
   const usesOllamaModel = isOllamaRunner || isRemoteAiRunner;
 
   return (
@@ -65,7 +65,7 @@ export function RunnerSelector({
             className="mt-2 w-full rounded-lg border border-line bg-white p-3 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           >
             <option>Ollama Local</option>
-            <option>Remote AI (Google Sheets)</option>
+            <option>Remote AI</option>
             <option>Demo Background Runner</option>
           </select>
         </label>

@@ -5,7 +5,7 @@ export type Topic =
   | 'Diabetes Treatment'
   | 'Cancer Research';
 
-export type Runner = 'Ollama Local' | 'Remote AI (Google Sheets)' | 'Demo Background Runner';
+export type Runner = 'Ollama Local' | 'Remote AI' | 'Demo Background Runner';
 
 export interface Transcript {
   id: string;
